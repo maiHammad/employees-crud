@@ -34,10 +34,10 @@ export class AddEditEmpComponent implements OnInit {
   }
   ngOnInit(): void {
     this.EmployeeForm=this.formBuilder.group({
-      name: new FormControl('',[Validators.required]),
-      email:new FormControl('',[Validators.email,Validators.required]),
-      address: new FormControl('',[Validators.required]),
-      phone: new FormControl('',[Validators.required,Validators.pattern("^(10|12|11)[0-9]+$")])
+      name: new FormControl(this.currentEmp.empName,[Validators.required]),
+      email:new FormControl(this.currentEmp.empEmail,[Validators.email,Validators.required]),
+      address: new FormControl(this.currentEmp.empAddress,[Validators.required]),
+      phone: new FormControl(this.currentEmp.empPhone,[Validators.required,Validators.pattern("^(10|12|11)[0-9]+$")])
     })
   }
 openModal(eventParam:any){
@@ -47,6 +47,12 @@ openModal(eventParam:any){
   this.currentEmpId=eventParam.empId;
   if(eventParam.currentEmp!=null){
     this.currentEmp=eventParam.currentEmp[0];
+    //this.EmployeeForm.value.name=this.currentEmp.empName
+    //this.EmployeeForm.get('name').setValue(this.currentEmp.empName);
+
+    this.EmployeeForm.setValue({
+      name: 'abc',
+   });
   }
 }
 closeModal(){
@@ -66,6 +72,7 @@ empObj={
 this.toggleSpinner.emit(true);
 
 this.employeeService.AddEmployee(JSON.stringify(empObj)).subscribe((d: any) => {
+  this.closeModal();
   this.toggleSpinner.emit(false);
 
 });
@@ -81,6 +88,7 @@ this.employeeService.AddEmployee(JSON.stringify(empObj)).subscribe((d: any) => {
   this.toggleSpinner.emit(true);
 
   this.employeeService.EditEmployee(JSON.stringify(empObj)).subscribe((d: any) => {
+    this.closeModal();
     this.toggleSpinner.emit(false);
 
   });

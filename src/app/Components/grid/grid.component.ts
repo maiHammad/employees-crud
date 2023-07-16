@@ -23,7 +23,6 @@ tableSizes: any = [3, 6, 9, 12];
 
     this.employeeService.GetAllEployees().subscribe((d: any) => {
       this.employeesList = d;
-      this.currentEmpsListToView=this.employeesList;
       this.toggleSpinner.emit(false);
 
     });
@@ -45,9 +44,13 @@ tableSizes: any = [3, 6, 9, 12];
     this.toggleSpinner.emit(true);
     this.employeeService.DeleteEmployee(this.empIdToDelete).subscribe((d: any) => {
       this.toggleSpinner.emit(false);
-
+      this.closeDeletePoup();
+      this.employeesList=this.removeObjectWithId(this.employeesList,this.empIdToDelete);
     });
 
+  }
+  removeObjectWithId(arr:any, id:any) {
+    return arr.filter((obj:any) => obj.empId !== id);
   }
   onTableDataChange(event: any) {
     this.page = event;
