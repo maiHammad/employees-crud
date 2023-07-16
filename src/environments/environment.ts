@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  apiUrl: "http://task.soft-zone.net/api/Employees",
   production: false
 };
 

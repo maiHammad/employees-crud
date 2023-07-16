@@ -1,0 +1,13 @@
+.modal.show{
+    display:block;
+}
+.modal-backdrop{
+    z-index: 0;
+    display: none;
+    &.show{  
+          display:block;
+    }
+}
+.invalid-feedback{
+display: block;
+}

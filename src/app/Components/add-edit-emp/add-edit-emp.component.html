@@ -1,0 +1,80 @@
+<div class="modal fade " [ngClass]="{'show': showPoup==true}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{modalTitle}} Employee</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="EmployeeForm"  (ngSubmit)="onEmployeeSubmit()">
+
+        <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label " for="name" >Name</label>
+                    <input
+                    type="text"
+                    id="name"
+                    formControlName="name"
+                    class="form-control"
+                    value="{{currentEmp.empName}}"
+                  />
+                  <div *ngIf=" formValidate['name'].touched && formValidate['name'].errors" class="invalid-feedback">
+                    <div class="alert alert-danger" *ngIf="formValidate['name'].errors['required']">Name is required</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label " for="email" >Email</label>
+                    <input
+                    type="text"
+                    id="email"
+                    formControlName="email"
+                    class="form-control"
+                    value="{{currentEmp.empEmail}}"
+                  />
+                  <div *ngIf=" formValidate['email'].touched && formValidate['email'].errors" class="invalid-feedback">
+                    <div class="alert alert-danger" *ngIf="formValidate['email'].errors['required']">Name is required</div>
+                    <div class="alert alert-danger" *ngIf="formValidate['email'].errors['email']">Email is invalid</div>
+
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label " for="address" >Address</label>
+                    <input
+                    type="text"
+                    id="address"
+                    formControlName="address"
+                    class="form-control"
+                    value="{{currentEmp.empAddress}}"
+                  />
+                  <div *ngIf=" formValidate['address'].touched && formValidate['address'].errors" class="invalid-feedback">
+                    <div class="alert alert-danger" *ngIf="formValidate['address'].errors['required']">Name is required</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label " for="phone" >Phone</label>
+                    <input
+                    type="number"
+                    id="phone"
+                    formControlName="phone"
+                    class="form-control"
+                    value="{{currentEmp.empPhone}}"
+                  />
+                  <div *ngIf=" formValidate['phone'].touched && formValidate['phone'].errors" class="invalid-feedback">
+                    <div class="alert alert-danger" *ngIf="formValidate['phone'].errors['required']">Phone is required</div>
+                    <div class="alert alert-danger" *ngIf="formValidate['phone'].errors['pattern']">Phone pattern is invalid</div>
+                  </div>
+                </div>
+            
+       </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="closeModal()">Cancel</button>
+          <button type="submit" *ngIf="currentMode==1" class="btn btn-success"  [disabled]="!EmployeeForm.valid">Add</button>
+          <button type="submit" *ngIf="currentMode==2" class="btn btn-primary"  [disabled]="!EmployeeForm.valid">Save</button>
+
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade " [ngClass]="{'show': showPoup==true}"></div>
