@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { EmployeesService } from 'src/app/Service/employees.service';
 
@@ -26,6 +26,8 @@ export class AddEditEmpComponent implements OnInit {
     phone: new FormControl('')
 
   }); 
+  @Output("toggleSpinner") toggleSpinner:EventEmitter<any>=new EventEmitter();
+
   constructor(private formBuilder:FormBuilder,private employeeService:EmployeesService) { }
   get formValidate(): { [key: string]: AbstractControl } {
     return this.EmployeeForm.controls;
@@ -61,8 +63,11 @@ empObj={
   "empAddress": this.EmployeeForm.value.address,
   "empPhone": this.EmployeeForm.value.phone+""
 }
+this.toggleSpinner.emit(true);
+
 this.employeeService.AddEmployee(JSON.stringify(empObj)).subscribe((d: any) => {
-  debugger
+  this.toggleSpinner.emit(false);
+
 });
 
 }else if(this.currentMode==2){
@@ -73,8 +78,11 @@ this.employeeService.AddEmployee(JSON.stringify(empObj)).subscribe((d: any) => {
     "empAddress": this.EmployeeForm.value.address,
     "empPhone": this.EmployeeForm.value.phone+""
   }
+  this.toggleSpinner.emit(true);
+
   this.employeeService.EditEmployee(JSON.stringify(empObj)).subscribe((d: any) => {
-    debugger
+    this.toggleSpinner.emit(false);
+
   });
 }
 }

@@ -1,9 +1,10 @@
 <app-header (openEditpoupParentFun)="openEditpoupParentFun($event)"></app-header>
 <div class="main">
   <div class="container mt-4">
-    <app-grid (openEditpoupParentFun)="openEditpoupParentFun($event)"></app-grid>
+    <app-grid (toggleSpinner)="toggleSpinner($event)" (openEditpoupParentFun)="openEditpoupParentFun($event)"></app-grid>
 
   </div>
 </div>
 
-<app-add-edit-emp #AddEditEmpComponent></app-add-edit-emp>
+<app-add-edit-emp (toggleSpinner)="toggleSpinner($event)" #AddEditEmpComponent></app-add-edit-emp>
+<app-loading-spinner  *ngIf="showLoading"></app-loading-spinner>

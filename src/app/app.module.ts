@@ -8,13 +8,15 @@ import { HeaderComponent } from './Components/header/header.component';
 import { AddEditEmpComponent } from './Components/add-edit-emp/add-edit-emp.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LoadingSpinnerComponent } from './Components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GridComponent,
     HeaderComponent,
-    AddEditEmpComponent
+    AddEditEmpComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

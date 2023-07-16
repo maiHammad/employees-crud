@@ -17,17 +17,20 @@ tableSizes: any = [3, 6, 9, 12];
 
   constructor(private employeeService:EmployeesService) { }
   @Output("openEditpoupParentFun") parentFun: EventEmitter<any> = new EventEmitter();
-
+  @Output("toggleSpinner") toggleSpinner:EventEmitter<any>=new EventEmitter();
   ngOnInit(): void {
+    this.toggleSpinner.emit(true);
+
     this.employeeService.GetAllEployees().subscribe((d: any) => {
       this.employeesList = d;
-      this.currentEmpsListToView=this.employeesList
+      this.currentEmpsListToView=this.employeesList;
+      this.toggleSpinner.emit(false);
+
     });
 
   }
   openPoupToEditEmp(empId:any){
     let currentEmpObj= this.employeesList.filter((emp:any) => emp.empId==empId);
-
     this.parentFun.emit({popupMode:'Edit',empId:empId,mode:2,currentEmp:currentEmpObj});
   
   }
@@ -39,7 +42,10 @@ tableSizes: any = [3, 6, 9, 12];
     this.showDeletePoup=false;
       }
   deleteEmployee(){
+    this.toggleSpinner.emit(true);
     this.employeeService.DeleteEmployee(this.empIdToDelete).subscribe((d: any) => {
+      this.toggleSpinner.emit(false);
+
     });
 
   }
