@@ -46,13 +46,11 @@ openModal(eventParam:any){
   this.currentMode=eventParam.mode;
   this.currentEmpId=eventParam.empId;
   if(eventParam.currentEmp!=null){
-    this.currentEmp=eventParam.currentEmp[0];
-    //this.EmployeeForm.value.name=this.currentEmp.empName
-    //this.EmployeeForm.get('name').setValue(this.currentEmp.empName);
-
-    this.EmployeeForm.setValue({
-      name: 'abc',
-   });
+    this.toggleSpinner.emit(true);
+    this.employeeService.GetEmpById(eventParam.empId).subscribe((d: any) => {
+      this.toggleSpinner.emit(false);
+      this.currentEmp=d;
+    });
   }
 }
 closeModal(){

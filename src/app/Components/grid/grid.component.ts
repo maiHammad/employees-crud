@@ -59,4 +59,14 @@ tableSizes: any = [3, 6, 9, 12];
     this.tableSize = event.target.value;
     this.page = 1;
   }
+  sortAsending(property:any){
+
+    property==1?this.employeesList.sort((a:any,b:any) => a.empName > b.empName ? 1 : -1):this.employeesList.sort((a:any,b:any) => a.empAddress > b.empAddress ? 1 : -1);
+
+  }
+  sortdesending(property:any){
+
+    property==1?this.employeesList.sort((a:any,b:any) => a.empName > b.empName ? -1 : 1):this.employeesList.sort((a:any,b:any) => a.empAddress > b.empAddress ? -1 : 1);
+
+  }
 }
