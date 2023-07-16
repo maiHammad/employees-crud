@@ -53,6 +53,12 @@ openModal(eventParam:any){
     this.employeeService.GetEmpById(eventParam.empId).subscribe((d: any) => {
       this.toggleSpinner.emit(false);
       this.currentEmp=d;
+      this.EmployeeForm.patchValue({
+        name:d.empName,
+        email:d.empEmail,
+        address:d.empAddress,
+        phone:d.empPhone
+      })
     });
   }
 }

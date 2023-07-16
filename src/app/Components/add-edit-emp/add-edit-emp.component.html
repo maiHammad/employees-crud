@@ -17,7 +17,6 @@
                     id="name"
                     formControlName="name"
                     class="form-control"
-                    [value]="currentEmp.empName"
                   />
                   <div *ngIf=" formValidate['name'].touched && formValidate['name'].errors" class="invalid-feedback">
                     <div class="alert alert-danger" *ngIf="formValidate['name'].errors['required']">Name is required</div>
@@ -30,7 +29,6 @@
                     id="email"
                     formControlName="email"
                     class="form-control"
-                    [value]="currentEmp.empEmail"
                   />
                   <div *ngIf=" formValidate['email'].touched && formValidate['email'].errors" class="invalid-feedback">
                     <div class="alert alert-danger" *ngIf="formValidate['email'].errors['required']">Name is required</div>
@@ -45,7 +43,6 @@
                     id="address"
                     formControlName="address"
                     class="form-control"
-                    [value]="currentEmp.empAddress"
                   />
                   <div *ngIf=" formValidate['address'].touched && formValidate['address'].errors" class="invalid-feedback">
                     <div class="alert alert-danger" *ngIf="formValidate['address'].errors['required']">Name is required</div>
@@ -58,7 +55,6 @@
                     id="phone"
                     formControlName="phone"
                     class="form-control"
-                    [value]="currentEmp.empPhone"
                   />
                   <div *ngIf=" formValidate['phone'].touched && formValidate['phone'].errors" class="invalid-feedback">
                     <div class="alert alert-danger" *ngIf="formValidate['phone'].errors['required']">Phone is required</div>
