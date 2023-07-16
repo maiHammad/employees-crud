@@ -21,6 +21,10 @@ checkedAll:boolean=false;
   @Output("toggleSpinner") toggleSpinner:EventEmitter<any>=new EventEmitter();
 
   ngOnInit(): void {
+this.loadAllEmps();
+
+  }
+  loadAllEmps(){
     this.toggleSpinner.emit(true);
 
     this.employeeService.GetAllEployees().subscribe((d: any) => {
@@ -28,7 +32,6 @@ checkedAll:boolean=false;
       this.toggleSpinner.emit(false);
 
     });
-
   }
 toggleCheckAll(){
   this.checkedAll=!this.checkedAll;
