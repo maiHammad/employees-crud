@@ -1,7 +1,9 @@
 <table class="table">
     <thead>
         <tr>
-          <th scope="col"></th>
+          <th scope="col">
+            <input (click)="toggleCheckAll()" class="form-check-input" type="checkbox" value="" id="">
+          </th>
           <th scope="col">Name
             <span>
                 <svg (click)="sortAsending(1)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
@@ -38,7 +40,7 @@
               };
         let i = index" >
                 <td><div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="">
+                    <input [checked]="checkedAll" class="form-check-input" type="checkbox" value="" id="">
                   </div></td>
                 <td>
                     <span>{{employee.empName}}</span>

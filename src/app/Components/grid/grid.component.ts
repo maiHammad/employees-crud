@@ -14,10 +14,12 @@ page: number = 1;
 count: number = 0;
 tableSize: number = 10;
 tableSizes: any = [3, 6, 9, 12];
+checkedAll:boolean=false;
 
   constructor(private employeeService:EmployeesService) { }
   @Output("openEditpoupParentFun") parentFun: EventEmitter<any> = new EventEmitter();
   @Output("toggleSpinner") toggleSpinner:EventEmitter<any>=new EventEmitter();
+
   ngOnInit(): void {
     this.toggleSpinner.emit(true);
 
@@ -28,6 +30,10 @@ tableSizes: any = [3, 6, 9, 12];
     });
 
   }
+toggleCheckAll(){
+  this.checkedAll=!this.checkedAll;
+}
+
   openPoupToEditEmp(empId:any){
     let currentEmpObj= this.employeesList.filter((emp:any) => emp.empId==empId);
     this.parentFun.emit({popupMode:'Edit',empId:empId,mode:2,currentEmp:currentEmpObj});
